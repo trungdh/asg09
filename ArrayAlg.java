@@ -23,30 +23,42 @@ public class ArrayAlg {
 	public static <T extends Comparable<T>> Pair<T> maxTwo(T[] a){
 		if (a == null || a.length == 0) return null;
 		else{
-		T max = a[0];
-		T maxse = a[0];
-		try{
-			for (int i = 1; i < a.length; i++){
+			T max = a[0];
+			Integer in = new Integer(0);
+			T maxse = (T)in;
+			try{
+			/*for (int i = 1; i < a.length; i++){
 				if (max.compareTo(a[i]) < 0) {
 				max = a[i];
 				}
-				if (max.compareTo(a[i]) > 0) 
+				if (a[i].compareTo(max) < 0) 
 				maxse = a[i];
-				if(a[i].compareTo(maxse) > 0 && a[i].compareTo(max)<0)
-				maxse = a[i];
+			}*/
+				for(int i = 0; i< a.length; i++){
+					if(a[i].compareTo(maxse)>0){
+						if(a[i].compareTo(max) > 0){
+							maxse = max;
+							max = a[i];
+						}
+						else 
+							maxse = a[i];
+					}
+					else if(maxse.compareTo(max)>= 0)
+						maxse = a[i];
+				}
 			}
-		}
-		catch(Exception e){
-			System.out.println(e);
-		}
-		return new Pair<T>(max, maxse);
+			catch(Exception e){
+				System.out.println(e);
+			}
+			return new Pair<T>(max, maxse);
 		}
 	}
+	
 
 	
 	public static void main(String [] args){
 		ArrayAlg a = new ArrayAlg();		
-		Integer[] number = {1,5,7,4,6,8};
+		Integer[] number = {1,5,7,9,2,4};
 		try{
 			a.<Integer>printArray(number,1,5);
 		}
